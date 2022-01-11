@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Company>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="row">
+    <a class="btn btn-success" asp-action="AddRecords">Add Records</a>
+</div>
+@foreach (Company comp in Model)
+{
+    <h1>@comp.CompanyName</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Title</th>
+                <th>
+                <a class="btn btn-danger" asp-action="DeleteRecords" asp-route-id="@comp.CompanyId">Delete</a></th>
+            </tr>
+
+        </thead>
+        <tbody>
+        @foreach (var item in comp.Employees)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.EmployeeId</td>
+                <td>@item.Phone</td>
+                <td>@item.Title</td>
+                
+            </tr>
+        }
+        </tbody>
+    </table>
+}
